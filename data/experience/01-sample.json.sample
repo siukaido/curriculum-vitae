@@ -1,0 +1,15 @@
+{
+  "order": 1,
+  "name": "株式会社サンプル",
+  "url": "https://example.com/",
+  "period": "2025年2月～現在",
+  "page_break_before": false,
+  "roles": [
+    {
+      "period": "2025年2月〜\n現在",
+      "positions": ["エンジニア"],
+      "description": ["サービスの開発を担当。"],
+      "technologies": ["TypeScript / React", "AWS / Terraform"]
+    }
+  ]
+}
