@@ -12,12 +12,14 @@ export function CompanyHistory({ company }: { company: Company }) {
         <caption className="text-body pt-0">
           <h2 className="fs-6 fw-bold mb-1">
             {company.name}{' '}
-            <a
-              className="small fw-normal link-body-emphasis text-decoration-none"
-              href={company.url}
-            >
-              ({company.url})
-            </a>
+            {company.url && (
+              <a
+                className="small fw-normal link-body-emphasis text-decoration-none"
+                href={company.url}
+              >
+                ({company.url})
+              </a>
+            )}
           </h2>
           <p className="ms-3 mb-0">{company.period}</p>
         </caption>
