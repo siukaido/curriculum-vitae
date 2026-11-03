@@ -27,7 +27,6 @@ function App() {
         style={{ maxWidth: '210mm' }}
       >
         <DocumentHeader
-          title={profile.title}
           asOf={profile.as_of}
           name={profile.name}
         />

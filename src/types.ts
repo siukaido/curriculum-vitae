@@ -18,7 +18,6 @@ export interface Company {
 
 /** 職務経歴書の基本情報。 */
 export interface Profile {
-  title: string
   name: string
   as_of: string
   self_introduction: string[]

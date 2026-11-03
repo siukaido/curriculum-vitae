@@ -17,7 +17,7 @@ npm run dev
 
 ## データの編集
 
-- `data/profile.json` に表題、更新日、氏名、自己PRを記載します。
+- `data/profile.json` に更新日、氏名、自己PRを記載します。
 - `data/experience/*.json` に会社ごとの職歴を記載します。
 - 職歴ファイルは自動で読み込まれます。
 - ファイル名の番号と `order` は、古い職歴から順に振ります。
@@ -38,7 +38,7 @@ npm run dev
 
 ```json
 {
-  "order": 8,
+  "order": 1,
   "name": "株式会社サンプル",
   "url": "https://example.com/",
   "period": "2025年2月～現在",
