@@ -1,0 +1,43 @@
+/* 用紙設定、改ページ制御、画面専用の装飾を印刷時に解除する指定。 */
+@page {
+  size: A4 portrait;
+  margin: 12mm 20mm;
+}
+
+@media print {
+  .document-preview {
+    background: white !important;
+    min-height: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  .document {
+    max-width: none;
+    padding: 0 !important;
+  }
+  .company thead {
+    display: table-row-group;
+    break-inside: avoid;
+    break-after: avoid;
+  }
+  .company,
+  .company table,
+  .company tbody {
+    break-inside: auto;
+  }
+  .company tbody tr,
+  caption {
+    break-inside: avoid;
+  }
+  caption,
+  h2,
+  h3 {
+    break-after: avoid;
+  }
+  p {
+    orphans: 3;
+    widows: 3;
+  }
+  .page-break {
+    break-before: page;
+  }
+}
