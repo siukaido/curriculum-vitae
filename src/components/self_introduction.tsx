@@ -2,9 +2,9 @@
 export function SelfIntroduction({ paragraphs }: { paragraphs: string[] }) {
   return (
     <section>
-      <h2 className="fs-6 fw-bold mb-3">自己PR</h2>
+      <h2 className="fs-5 fw-bold mb-2">自己PR</h2>
       {paragraphs.map((paragraph, index) => (
-        <p className="mb-2" key={index}>{paragraph}</p>
+        <p className="mb-0" key={index}>{paragraph}</p>
       ))}
     </section>
   )
