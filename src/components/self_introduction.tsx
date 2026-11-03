@@ -4,7 +4,7 @@ export function SelfIntroduction({ paragraphs }: { paragraphs: string[] }) {
     <section>
       <h2 className="fs-5 fw-bold mb-2">自己PR</h2>
       {paragraphs.map((paragraph, index) => (
-        <p className="mb-0" key={index}>{paragraph}</p>
+        <p className="mb-1" key={index}>{paragraph}</p>
       ))}
     </section>
   )

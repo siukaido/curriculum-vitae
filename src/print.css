@@ -28,6 +28,7 @@
   caption {
     break-inside: avoid;
   }
+  .keep-with-next,
   caption,
   h2,
   h3 {

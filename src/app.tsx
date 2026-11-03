@@ -4,7 +4,7 @@ import { CompanyHistory } from './components/company_history'
 import { DocumentHeader } from './components/document_header'
 import { PrintToolbar } from './components/print_toolbar'
 import { SelfIntroduction } from './components/self_introduction'
-import type { Company } from './types'
+import type { Company, Profile } from './types'
 import './print.css'
 
 /** 同じ区分の職歴を表示順の降順、同順位ならファイル名順に並べる。 */
@@ -33,6 +33,7 @@ const companyGroups = [
 
 /** JSON の職歴を読み込み、印刷操作と文書全体を組み立てる。 */
 function App() {
+  const resumeProfile: Profile = profile
   return (
     <div className="document-preview bg-body-secondary min-vh-100 pb-4">
       <PrintToolbar />
@@ -45,6 +46,14 @@ function App() {
           asOf={profile.as_of}
           name={profile.name}
         />
+        {resumeProfile.summary && resumeProfile.summary.length > 0 && (
+          <section className="mb-4" aria-label="職務要約">
+            <h2 className="fs-5 fw-bold mb-2">職務要約</h2>
+            {resumeProfile.summary.map((paragraph, index) => (
+              <p className="mb-1" key={index}>{paragraph}</p>
+            ))}
+          </section>
+        )}
         {companyGroups.filter((group) => group.companies.length > 0).map((group) => (
           <section key={group.title}>
             <h2 className="fs-5 fw-bold mb-3">{group.title}</h2>

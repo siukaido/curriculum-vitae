@@ -2,6 +2,8 @@
 export interface Role {
   period: string
   positions: string[]
+  scope?: string[]
+  results?: string[]
   description: string[]
   technologies: string[]
 }
@@ -12,6 +14,7 @@ export interface Company {
   name: string
   url: string
   period: string
+  note?: string
   page_break_before?: boolean
   roles: Role[]
 }
@@ -20,5 +23,6 @@ export interface Company {
 export interface Profile {
   name: string
   as_of: string
+  summary?: string[]
   self_introduction: string[]
 }

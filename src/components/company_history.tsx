@@ -6,7 +6,7 @@ import { RoleDetails } from './role_details'
 export function CompanyHistory({ company }: { company: Company }) {
   return (
     <section
-      className={`company mb-5${company.page_break_before ? ' page-break' : ''}`}
+      className={`company mb-4${company.page_break_before ? ' page-break' : ''}`}
     >
       <Table bordered className="caption-top border-secondary mb-0">
         <caption className="text-body pt-0">
@@ -21,10 +21,11 @@ export function CompanyHistory({ company }: { company: Company }) {
               </a>
             )}
           </h2>
-          <p className="ms-3 mb-0">{company.period}</p>
+          <p className="mb-0">{company.period}</p>
+          {company.note && <p className="mt-1 mb-0">{company.note}</p>}
         </caption>
         <colgroup>
-          <col className="w-25" />
+          <col style={{ width: '19%' }} />
           <col />
         </colgroup>
         <thead className="table-secondary text-center">

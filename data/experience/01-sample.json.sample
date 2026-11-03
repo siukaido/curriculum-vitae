@@ -7,9 +7,22 @@
   "roles": [
     {
       "period": "2025年2月〜\n現在",
-      "positions": ["エンジニア"],
-      "description": ["サービスの開発を担当。"],
-      "technologies": ["TypeScript / React", "AWS / Terraform"]
+      "positions": [
+        "エンジニア"
+      ],
+      "description": [
+        "サービスの開発を担当。"
+      ],
+      "technologies": [
+        "TypeScript / React",
+        "AWS / Terraform"
+      ],
+      "scope": [
+        "担当範囲と開発体制を記載します。"
+      ],
+      "results": [
+        "確認できる成果を記載します。"
+      ]
     }
   ]
 }
