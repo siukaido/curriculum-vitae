@@ -1,5 +1,6 @@
 /** 一つの担当期間における職務と使用技術。 */
 export interface Role {
+  keep_together?: boolean
   period: string
   positions: string[]
   scope?: string[]

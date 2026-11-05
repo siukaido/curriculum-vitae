@@ -24,6 +24,10 @@
   .company tbody {
     break-inside: auto;
   }
+  .keep-together,
+  .company tbody.keep-together {
+    break-inside: avoid;
+  }
   .company tbody tr,
   caption {
     break-inside: avoid;

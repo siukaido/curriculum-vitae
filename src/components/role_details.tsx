@@ -39,7 +39,7 @@ export function RoleDetails({ role }: { role: Role }) {
   ]
 
   return (
-    <tbody>
+    <tbody className={role.keep_together ? 'keep-together' : undefined}>
       {blocks.map((block, index) => (
         <tr className={`border-0${index === blocks.length - 2 ? ' keep-with-next' : ''}`} key={index}>
           <td
