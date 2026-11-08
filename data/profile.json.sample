@@ -1,12 +1,15 @@
 {
   "name": "職歴 太郎",
-  "as_of": "2026年11月3日現在",
-  "self_introduction": [
-    "自己PRです",
-    "自己PRです",
-    "自己PRです"
-  ],
-  "summary": [
-    "これまでの経験と強みを簡潔に記載します。"
-  ]
+  "name_kana": "",
+  "birth_date": "",
+  "postal_code": "",
+  "address": "",
+  "phone": "",
+  "email": "",
+  "gender": "",
+  "address_kana": "",
+  "contact_address_kana": "",
+  "contact_postal_code": "",
+  "contact_address": "",
+  "contact_phone": ""
 }

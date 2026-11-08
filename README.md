@@ -2,22 +2,114 @@
 
 - Vite + React + TypeScript で職務経歴書を表示します。
 - ボタン、レイアウト、表には React Bootstrap を使用します。
-- 余白、文字サイズ、罫線は Bootstrap のクラスで指定します。
+- 職務経歴書の余白、文字サイズ、罫線は Bootstrap のクラスで指定します。
+- 履歴書の帳票レイアウトは `src/resume.css` で指定します。
 - `src/print.css` には用紙設定と改ページ制御のみを記載します。
 - 表示コンポーネントは `src/components/` に配置します。
 - `data/` 以下の JSON を編集して内容を更新します。
 - PDF はブラウザの印刷機能で保存します。
 
+## 履歴書
+
+- 画面上部の「履歴書」で、写真欄のない履歴書に切り替えます。
+- `?document=resume` を付けた URL からも開けます。
+- 氏名・ふりがな・連絡先などは `data/profile.json` を共有します。
+- 作成基準日は `data/document.json` を共有します。
+- 学歴は `data/education.json` に記載します。
+- 免許・資格は `data/qualifications.json` に記載します。
+- 履歴書用の文章と追加職歴は `data/resume.json` に記載します。
+- 未入力の情報は推測せず、空欄で印刷します。
+- 入力漏れの案内は画面だけに表示します。
+- 写真欄はありません。
+- 性別欄は任意記載です。
+- 満年齢は生年月日と `document.as_of` の作成基準日から自動計算します。
+- 年齢の計算には `YYYY年M月D日` 形式を使用します。
+- 作成基準日の末尾には「現在」を付けられます。
+- 日付が未入力または不正な場合、年齢は空欄にします。
+- 本業の職歴は `data/experience/*.json` を共有します。
+- `employment.start` に入社年月を `YYYY-MM` 形式で記載します。
+- `employment.end` に退社年月を同じ形式で記載します。
+- 在職中は `employment.end` を `null` にします。
+- `employment` のない会社は履歴書の職歴から除外されます。
+- その場合は画面に入力漏れの案内を表示します。
+- 既存の `period` は職務経歴書の表示用に維持します。
+- 在籍期間を変更した場合は `period` と `employment` の両方を更新します。
+- 副業の職歴は履歴書に自動掲載しません。
+- 本業のフリーランス開始は `career_events` に記載します。
+- 退職理由やフリーランスの廃業は自動補完しません。
+- 職歴は入退社と追加の出来事をまとめて古い年月から表示します。
+- 厚生労働省の[履歴書様式例（A4版）](https://kouseisaiyou.mhlw.go.jp/assets/pdf/methods/03_a4.pdf)を参考にしています。
+- 写真欄を省略し、メールアドレス欄を追加した調整版です。
+- 用紙は A4 縦の2ページ構成です。
+- 学歴・職歴は同じ表にまとめ、15行目の後に改ページします。
+- 2ページ目に経歴の続きと免許・資格、志望動機、本人希望を表示します。
+- 長文や多数の経歴を入力した場合は、3ページ以上になる場合があります。
+- 入力後は印刷プレビューでページ数と改ページを確認します。
+
+### 共通プロフィール（`data/profile.json`）
+
+| フィールド | 内容 |
+| --- | --- |
+| `name` | 氏名 |
+| `name_kana` | 氏名のふりがな |
+| `gender` | 性別（任意） |
+| `address_kana` | 現住所のふりがな |
+| `contact_address_kana` | 別の連絡先のふりがな |
+| `contact_postal_code` | 別の連絡先の郵便番号 |
+| `contact_address` | 現住所以外への連絡を希望する場合の住所 |
+| `contact_phone` | 別の連絡先の電話番号 |
+| `birth_date` | 生年月日（例：1990年1月1日） |
+| `postal_code` | 郵便番号 |
+| `address` | 住所 |
+| `phone` | 電話番号 |
+| `email` | メールアドレス |
+
+### 履歴書専用データ（`data/resume.json`）
+
+| フィールド | 内容 |
+| --- | --- |
+| `career_events` | 本業のフリーランス開始などの追加職歴 |
+| `motivation` | 志望動機またはアピールポイント |
+| `preferences` | 本人希望 |
+
+- `education.json` と `qualifications.json` は次の形式の配列です。
+- `resume.json` の `career_events` も同じ形式の配列です。
+
+```json
+[{ "date": "2010-03", "text": "○○大学 ○○学部 卒業" }]
+```
+
+- 空文字や空配列は未入力を表します。
+- 免許・資格は取得年月が不明な場合、`date` を空文字にできます。
+- 年月不明の免許・資格は年月欄を空欄にして、年月のある項目の後に表示します。
+
 ## 起動
 
 ```sh
 npm install
+# 初回のみ実行します。既存の個人データは上書きしません。
+for sample in data/*.json.sample; do
+  target="${sample%.sample}"
+  if [ ! -e "$target" ]; then cp "$sample" "$target"; fi
+done
 npm run dev
 ```
 
 ## データの編集
 
-- `data/profile.json` に更新日、氏名、職務要約、自己PRを記載します。
+| ファイル | 内容 |
+| --- | --- |
+| `data/profile.json` | 氏名・ふりがな・生年月日・性別・住所・連絡先 |
+| `data/document.json` | 両書類で共通の作成基準日 `as_of` |
+| `data/education.json` | 学歴の配列 |
+| `data/qualifications.json` | 免許・資格の配列 |
+| `data/career-summary.json` | 職務経歴書の職務要約・自己PR |
+| `data/resume.json` | 履歴書のアピール文・本人希望・追加職歴 |
+
+- 各 JSON の初期値は同名の `.json.sample` にあります。
+- 個人情報を含む `.json` は Git の管理対象外です。
+- 学歴や資格は、それぞれ1ファイルの配列で管理します。
+- 書類ごとの自己PRは用途と長さが異なるため、別々に管理します。
 - `data/experience/*.json` に本業の職歴を記載します。
 - `data/side-experience/*.json` にフリーランス・副業の職歴を記載します。
 - 職歴ファイルは自動で読み込まれます。
@@ -96,6 +188,7 @@ npm run dev
 ## 検証
 
 ```sh
+npm test
 npm run lint
 npm run build
 ```
@@ -106,7 +199,8 @@ npm run build
 - `npm run lint:fix` でソースコードと設定ファイルを整形します。
 - 個人データとロックファイルは Biome の処理対象から除外しています。
 
-- 自動テストの実行基盤は未導入です。
+- 職歴の生成と年月の検証を Node.js のテストランナーで確認します。
+- テストの実行には Node.js 22.6 以降が必要です。
 - ビルド成果物は `dist/` に出力します。
 - JSON 内の情報はビルド成果物にも含まれます。
 

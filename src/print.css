@@ -28,6 +28,9 @@
   .company tbody.keep-together {
     break-inside: avoid;
   }
+  .resume tr {
+    break-inside: avoid;
+  }
   .company tbody tr,
   caption {
     break-inside: avoid;
